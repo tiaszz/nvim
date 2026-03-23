@@ -86,7 +86,7 @@ return {
         -- as mason setup_handlers is deprecated & its causing issues with lsp settings
         --
         -- Setup servers
-        local lspconfig = vim.lsp.config
+        local lspconfig = vim.lsp.enable
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
         local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -176,7 +176,17 @@ return {
             },
         })
 
-        lspconfig("gopls", { capabilities = capabilities })
+        lspconfig("gopls", {
+            capabilities = capabilities,
+            gopls = {
+                analyses = {
+                    unusedparams = true,
+                },
+                staticcheck = true,
+                gofumpt = true,
+            },
+        })
+
         lspconfig("clangd", {
             capabilities = capabilities,
             cmd = {
