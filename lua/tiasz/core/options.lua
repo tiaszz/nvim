@@ -31,3 +31,5 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "180"
 
 vim.opt.clipboard:append("unnamedplus")
+
+vim.opt_local.conceallevel = 1
